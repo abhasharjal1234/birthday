@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Floating balloons background */
+        .balloon {
+            position: fixed;
+            width: 50px;
+            height: 60px;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.7;
+            z-index: 1;
+        }
+
+        .balloon:nth-child(1) { left: 10%; background: #ff6b6b; animation-delay: 0s; top: 100%; }
+        .balloon:nth-child(2) { left: 25%; background: #4ecdc4; animation-delay: 1s; top: 100%; }
+        .balloon:nth-child(3) { left: 40%; background: #ffe66d; animation-delay: 2s; top: 100%; }
+        .balloon:nth-child(4) { left: 60%; background: #ff6b9d; animation-delay: 1.5s; top: 100%; }
+        .balloon:nth-child(5) { left: 75%; background: #95e1d3; animation-delay: 0.5s; top: 100%; }
+        .balloon:nth-child(6) { left: 85%; background: #ffa07a; animation-delay: 2.5s; top: 100%; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-100vh) rotate(5deg); }
+        }
+
+        /* Main container */
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Animated birthday heading */
+        .birthday-heading {
+            text-align: center;
+            margin: 40px 0;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .birthday-heading h1 {
+            font-size: 4rem;
+            color: #fff;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            animation: colorChange 3s infinite alternate;
+            margin-bottom: 10px;
+        }
+
+        .birthday-heading .name {
+            font-size: 3rem;
+            color: #ffe66d;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            display: inline-block;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes colorChange {
+            0% { color: #fff; }
+            25% { color: #ffe66d; }
+            50% { color: #ff6b9d; }
+            75% { color: #4ecdc4; }
+            100% { color: #fff; }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Cake section */
+        .dog-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 60px 0;
+            animation: fadeIn 2s ease-in;
+            position: relative;
+        }
+
+        /* Birthday cake */
+        .cake {
+            position: relative;
+            width: 100px;
+        }
+
+        /* Cake layers */
+        .cake-layer {
+            width: 100px;
+            height: 30px;
+            background: #ffc8dd;
+            border-radius: 5px;
+            margin: 2px 0;
+            position: relative;
+        }
+
+        .cake-layer:nth-child(2) {
+            background: #ffafcc;
+        }
+
+        .cake-layer:nth-child(3) {
+            background: #ff9ab5;
+        }
+
+        /* Frosting decoration */
+        .frosting {
+            position: absolute;
+            width: 100%;
+            height: 8px;
+            background: #fff;
+            border-radius: 50%;
+            bottom: -4px;
+        }
+
+        /* Candle */
+        .candle {
+            position: absolute;
+            width: 8px;
+            height: 30px;
+            background: linear-gradient(to bottom, #fff 0%, #ffe66d 100%);
+            border-radius: 2px;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Candle flame with flicker animation */
+        .flame {
+            position: absolute;
+            width: 12px;
+            height: 18px;
+            background: #ff6b00;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: flicker 0.3s infinite alternate;
+        }
+
+        .flame::before {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 12px;
+            background: #ffd700;
+            border-radius: 50%;
+            top: 3px;
+            left: 2px;
+        }
+
+        @keyframes flicker {
+            0% { transform: translateX(-50%) scaleY(1); }
+            100% { transform: translateX(-50%) scaleY(1.1); }
+        }
+
+        /* Personal message section */
+        .message-section {
+            text-align: center;
+            margin: 80px auto;
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            opacity: 0;
+            animation: fadeIn 2s ease-in 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .message-section h2 {
+            font-size: 2.5rem;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+
+        .message-section p {
+            font-size: 1.3rem;
+            color: #333;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        /* Interactive button */
+        .celebration-btn {
+            display: inline-block;
+            margin: 40px 0;
+            padding: 20px 50px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fff;
+            background: linear-gradient(135deg, #ff6b9d 0%, #ff8fab 100%);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(255, 107, 157, 0.4);
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: pulse 2s infinite;
+        }
+
+        .celebration-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(255, 107, 157, 0.6);
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Confetti animation */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #f0f;
+            opacity: 0;
+            z-index: 100;
+            animation: confettiFall 3s linear forwards;
+        }
+
+        @keyframes confettiFall {
+            0% {
+                opacity: 1;
+                transform: translateY(0) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(100vh) rotate(720deg);
+            }
+        }
+
+        /* Countdown timer */
+        .countdown-section {
+            text-align: center;
+            margin: 40px 0;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .countdown-section h3 {
+            font-size: 2rem;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .countdown-item {
+            background: #667eea;
+            color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            min-width: 100px;
+        }
+
+        .countdown-item .number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .countdown-item .label {
+            font-size: 1rem;
+            text-transform: uppercase;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .birthday-heading h1 {
+                font-size: 2.5rem;
+            }
+
+            .birthday-heading .name {
+                font-size: 2rem;
+            }
+
+            .cake {
+                transform: scale(0.8);
+            }
+
+            .message-section {
+                padding: 20px;
+                margin: 40px 20px;
+            }
+
+            .message-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .message-section p {
+                font-size: 1.1rem;
+            }
+
+            .celebration-btn {
+                padding: 15px 30px;
+                font-size: 1.2rem;
+            }
+
+            .countdown-item {
+                min-width: 80px;
+                padding: 15px;
+            }
+
+            .countdown-item .number {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating balloons background -->
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+
+    <!-- Main container -->
+    <div class="container">
+        <!-- Birthday heading with animated text -->
+        <div class="birthday-heading">
+            <h1>🎉 Happy Birthday 🎉</h1>
+            <div class="name">NAME</div>
+        </div>
+
+        <!-- Birthday cake -->
+        <div class="dog-section">
+            <div class="cake">
+                <div class="candle">
+                    <div class="flame"></div>
+                </div>
+                <div class="cake-layer">
+                    <div class="frosting"></div>
+                </div>
+                <div class="cake-layer">
+                    <div class="frosting"></div>
+                </div>
+                <div class="cake-layer">
+                    <div class="frosting"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Personal message section with fade-in animation -->
+        <div class="message-section">
+            <h2>A Special Message</h2>
+            <p>Wishing you a day filled with love, laughter, and all your favorite things!</p>
+            <p>May this year bring you endless joy, exciting adventures, and dreams come true.</p>
+            <p>You deserve all the happiness in the world. Celebrate big today! 🎂🎈</p>
+        </div>
+
+        <!-- Interactive celebration button -->
+        <div style="text-align: center;">
+            <button class="celebration-btn" onclick="celebrate()">
+                🎊 Start the Celebration! 🎊
+            </button>
+        </div>
+
+        <!-- Countdown to next birthday -->
+        <div class="countdown-section">
+            <h3>⏰ Countdown to Next Birthday</h3>
+            <div class="countdown" id="countdown">
+                <div class="countdown-item">
+                    <span class="number" id="days">0</span>
+                    <span class="label">Days</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="number" id="hours">0</span>
+                    <span class="label">Hours</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="number" id="minutes">0</span>
+                    <span class="label">Minutes</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="number" id="seconds">0</span>
+                    <span class="label">Seconds</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Confetti celebration function
+        function celebrate() {
+            const colors = ['#ff6b6b', '#4ecdc4', '#ffe66d', '#ff6b9d', '#95e1d3', '#ffa07a'];
+            
+            // Create 100 confetti pieces
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    
+                    // Random position across the screen
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    
+                    // Random color
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    
+                    // Random size
+                    const size = Math.random() * 10 + 5;
+                    confetti.style.width = size + 'px';
+                    confetti.style.height = size + 'px';
+                    
+                    // Random rotation
+                    confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                    
+                    document.body.appendChild(confetti);
+                    
+                    // Remove confetti after animation completes
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 3000);
+                }, i * 30); // Stagger the confetti creation
+            }
+            
+            // Play a sound effect (optional - uncomment if you want)
+            // You can add an audio element if desired
+        }
+
+        // Countdown timer to next birthday
+        function updateCountdown() {
+            const now = new Date();
+            const currentYear = now.getFullYear();
+            
+            // Set next birthday (example: January 1st - change this to actual birthday)
+            // Format: new Date(year, month-1, day)
+            let nextBirthday = new Date(currentYear, 0, 1); // January 1st
+            
+            // If birthday has passed this year, set to next year
+            if (now > nextBirthday) {
+                nextBirthday = new Date(currentYear + 1, 0, 1);
+            }
+            
+            // Calculate time difference
+            const diff = nextBirthday - now;
+            
+            // Calculate days, hours, minutes, seconds
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            // Update the countdown display
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+            document.getElementById('seconds').textContent = seconds;
+        }
+
+        // Update countdown every second
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // Auto-trigger celebration on page load (optional)
+        window.addEventListener('load', () => {
+            setTimeout(celebrate, 2000); // Trigger after 2 seconds
+        });
+    </script>
+</body>
+</html>
